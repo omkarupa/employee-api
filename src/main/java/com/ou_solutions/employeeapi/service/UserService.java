@@ -1,9 +1,15 @@
 package com.ou_solutions.employeeapi.service;
 
 import com.ou_solutions.employeeapi.dto.EmployeeRequest;
+import com.ou_solutions.employeeapi.dto.LoginRequest;
 import com.ou_solutions.employeeapi.entity.UserDO;
 import com.ou_solutions.employeeapi.repository.UserRepository;
+import com.ou_solutions.employeeapi.security.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +20,8 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepo;
+
+
 
     public UserDO saveUser(String userName,String password,String mobile)
     {
@@ -43,6 +51,7 @@ public class UserService {
     {
         return userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User Not Registered"));
     }
+
 
 
 }
