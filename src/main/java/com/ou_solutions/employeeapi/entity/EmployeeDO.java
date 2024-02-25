@@ -31,7 +31,7 @@ public class EmployeeDO {
     @JoinColumn(name = "address_id")
     private AddressDO addressDO;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "job_role_id")
     private JobRoleDO jobRoleDO;
 

@@ -28,7 +28,7 @@ public class JobRoleService {
     }
 
     public JobRoleDO mapFromJobRoleRequest(String jobRoleName) {
-        return JobRoleDO.build(0L, jobRoleName);
+        return JobRoleDO.build(0L, jobRoleName,null);
     }
 
     public JobRoleDO findJobRoleByName(String jobRoleName) throws JobRoleNotFoundException {
