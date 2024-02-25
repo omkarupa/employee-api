@@ -1,6 +1,5 @@
 package com.ou_solutions.employeeapi.service;
 
-import com.ou_solutions.employeeapi.dto.DepartmentRequest;
 import com.ou_solutions.employeeapi.entity.DepartmentDO;
 import com.ou_solutions.employeeapi.exceptions.DepartmentNotFoundException;
 import com.ou_solutions.employeeapi.repository.DepartmentRepository;

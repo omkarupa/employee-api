@@ -17,7 +17,7 @@ public class DeparmentController {
     private final DepartmentService departmentService;
 
     @PostMapping("/saveDepartment")
-    public DepartmentDO saveDepartment(@RequestBody DepartmentRequest request) throws DepartmentNotFoundException {
+    public DepartmentDO saveDepartment(@RequestBody DepartmentRequest request) {
         return departmentService.saveDepartment(request.getDepartmentName());
     }
 
