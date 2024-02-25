@@ -1,7 +1,6 @@
 package com.ou_solutions.employeeapi.controller;
 
 import com.ou_solutions.employeeapi.dto.JobRoleRequest;
-import com.ou_solutions.employeeapi.entity.EmployeeDO;
 import com.ou_solutions.employeeapi.entity.JobRoleDO;
 import com.ou_solutions.employeeapi.exceptions.JobRoleNotFoundException;
 import com.ou_solutions.employeeapi.service.JobRoleService;

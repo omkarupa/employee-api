@@ -1,6 +1,6 @@
 package com.ou_solutions.employeeapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
