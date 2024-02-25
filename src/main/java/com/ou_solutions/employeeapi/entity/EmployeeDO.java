@@ -27,4 +27,9 @@ public class EmployeeDO {
     @JoinColumn(name = "user_id")
     private UserDO userDO;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private AddressDO addressDO;
+
+
 }

@@ -1,6 +1,7 @@
 package com.ou_solutions.employeeapi.service;
 
 import com.ou_solutions.employeeapi.dto.EmployeeRequest;
+import com.ou_solutions.employeeapi.entity.AddressDO;
 import com.ou_solutions.employeeapi.entity.EmployeeDO;
 import com.ou_solutions.employeeapi.entity.UserDO;
 import com.ou_solutions.employeeapi.repository.EmployeeRepository;
@@ -34,8 +35,9 @@ public class EmployeeService {
     {
         UserDO userDO = UserDO.build(0L,request.getEmailId(), request.getPassword(), request.getMobile(), null);
 
+        AddressDO addressDO = AddressDO.build(0L, request.getStreetName(), request.getCity(), null);
 
-        return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile(),userDO);
+        return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile(),userDO,addressDO);
     }
 
 }
