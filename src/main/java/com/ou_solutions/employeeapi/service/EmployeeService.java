@@ -3,7 +3,9 @@ package com.ou_solutions.employeeapi.service;
 import com.ou_solutions.employeeapi.dto.EmployeeRequest;
 import com.ou_solutions.employeeapi.entity.AddressDO;
 import com.ou_solutions.employeeapi.entity.EmployeeDO;
+import com.ou_solutions.employeeapi.entity.JobRoleDO;
 import com.ou_solutions.employeeapi.entity.UserDO;
+import com.ou_solutions.employeeapi.exceptions.JobRoleNotFoundException;
 import com.ou_solutions.employeeapi.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,9 @@ public class EmployeeService {
 
     private final EmployeeRepository empRepo;
 
-    public EmployeeDO saveEmployee(EmployeeRequest request)
-    {
+    private final JobRoleService jobRoleService;
+
+    public EmployeeDO saveEmployee(EmployeeRequest request) throws JobRoleNotFoundException {
         return empRepo.save(mapFromEmployeeRequest(request));
     }
 
@@ -31,13 +34,14 @@ public class EmployeeService {
         return empRepo.findAll();
     }
 
-    public EmployeeDO mapFromEmployeeRequest(EmployeeRequest request)
-    {
+    public EmployeeDO mapFromEmployeeRequest(EmployeeRequest request) throws JobRoleNotFoundException {
         UserDO userDO = UserDO.build(0L,request.getEmailId(), request.getPassword(), request.getMobile(), null);
 
         AddressDO addressDO = AddressDO.build(0L, request.getStreetName(), request.getCity(), null);
 
-        return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile(),userDO,addressDO);
+        JobRoleDO jobRoleDO = jobRoleService.findJobRoleByName(request.getJobRole());
+
+        return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile(),userDO,addressDO,jobRoleDO);
     }
 
 }
