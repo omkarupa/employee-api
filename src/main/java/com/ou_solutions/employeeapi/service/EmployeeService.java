@@ -6,6 +6,7 @@ import com.ou_solutions.employeeapi.exceptions.DepartmentNotFoundException;
 import com.ou_solutions.employeeapi.exceptions.JobRoleNotFoundException;
 import com.ou_solutions.employeeapi.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class EmployeeService {
     private final JobRoleService jobRoleService;
 
     private final DepartmentService deptService;
+
+    private final PasswordEncoder encoder;
 
     public EmployeeDO saveEmployee(EmployeeRequest request) throws JobRoleNotFoundException, DepartmentNotFoundException {
         return empRepo.save(mapFromEmployeeRequest(request));
@@ -35,7 +38,8 @@ public class EmployeeService {
     }
 
     public EmployeeDO mapFromEmployeeRequest(EmployeeRequest request) throws JobRoleNotFoundException, DepartmentNotFoundException {
-        UserDO userDO = UserDO.build(0L,request.getEmailId(), request.getPassword(), request.getMobile(), null);
+
+        UserDO userDO = UserDO.build(0L,request.getEmailId(), encoder.encode(request.getPassword()), request.getMobile(), "USER",null);
 
         AddressDO addressDO = AddressDO.build(0L, request.getStreetName(), request.getCity(), null);
 

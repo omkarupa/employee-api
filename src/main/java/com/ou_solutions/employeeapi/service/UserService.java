@@ -4,6 +4,7 @@ import com.ou_solutions.employeeapi.dto.EmployeeRequest;
 import com.ou_solutions.employeeapi.entity.UserDO;
 import com.ou_solutions.employeeapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +36,12 @@ public class UserService {
         String password = request.getPassword();
         String mobile = request.getMobile();
 
-        return UserDO.build(0L,username,password,mobile,null);
+        return UserDO.build(0L,username,password,mobile,"USER",null);
+    }
+
+    public UserDO findUserByUsername(String username) throws UsernameNotFoundException
+    {
+        return userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User Not Registered"));
     }
 
 

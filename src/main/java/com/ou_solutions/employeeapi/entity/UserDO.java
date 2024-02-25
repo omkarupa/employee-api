@@ -16,11 +16,14 @@ public class UserDO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
 
     private String mobile;
+
+    private String roles;
 
     @OneToOne(mappedBy = "userDO")
     @JsonIgnore
