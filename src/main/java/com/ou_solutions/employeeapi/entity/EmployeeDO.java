@@ -35,5 +35,10 @@ public class EmployeeDO {
     @JoinColumn(name = "job_role_id")
     private JobRoleDO jobRoleDO;
 
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private DepartmentDO departmentDO;
+
+
 
 }

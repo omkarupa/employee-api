@@ -2,6 +2,7 @@ package com.ou_solutions.employeeapi.service;
 
 import com.ou_solutions.employeeapi.dto.DepartmentRequest;
 import com.ou_solutions.employeeapi.entity.DepartmentDO;
+import com.ou_solutions.employeeapi.exceptions.DepartmentNotFoundException;
 import com.ou_solutions.employeeapi.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepartmentService {
 
-    private DepartmentRepository deptRepo;
+    private final DepartmentRepository deptRepo;
 
     public DepartmentDO saveDepartment(String departmentName)
     {
-        return null;
+            return deptRepo.save(mapFromDepartmentRequest(departmentName));
     }
 
-    public DepartmentDO getDepartmentById(Long id)
-    {
-        return deptRepo.findById(id).orElse(new DepartmentDO());
+    public DepartmentDO getDepartmentById(Long id) throws DepartmentNotFoundException {
+        return deptRepo.findById(id).orElseThrow(() -> new DepartmentNotFoundException("Department Not Found for " + id));
+    }
+
+    public DepartmentDO getDepartmentByName(String  departmentName) throws DepartmentNotFoundException {
+        return deptRepo.findByDepartmentName(departmentName).orElseThrow(() -> new DepartmentNotFoundException("Department Not Found for " + departmentName));
     }
 
     public List<DepartmentDO> getAllDeparments()
@@ -31,8 +35,10 @@ public class DepartmentService {
 
     public DepartmentDO mapFromDepartmentRequest(String deparmtentName)
     {
-        return DepartmentDO.build(0L, deparmtentName);
+        return DepartmentDO.build(0L, deparmtentName,null);
     }
+
+
 
 
 }

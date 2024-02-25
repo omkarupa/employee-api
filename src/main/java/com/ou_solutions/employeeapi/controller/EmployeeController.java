@@ -3,6 +3,7 @@ package com.ou_solutions.employeeapi.controller;
 
 import com.ou_solutions.employeeapi.dto.EmployeeRequest;
 import com.ou_solutions.employeeapi.entity.EmployeeDO;
+import com.ou_solutions.employeeapi.exceptions.DepartmentNotFoundException;
 import com.ou_solutions.employeeapi.exceptions.JobRoleNotFoundException;
 import com.ou_solutions.employeeapi.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @PostMapping("/sign-up")
-    public EmployeeDO saveEmployee(@RequestBody EmployeeRequest request) throws JobRoleNotFoundException {
+    public EmployeeDO saveEmployee(@RequestBody EmployeeRequest request) throws JobRoleNotFoundException, DepartmentNotFoundException {
         return employeeService.saveEmployee(request);
     }
 
