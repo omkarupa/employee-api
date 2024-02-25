@@ -2,6 +2,7 @@ package com.ou_solutions.employeeapi.service;
 
 import com.ou_solutions.employeeapi.dto.EmployeeRequest;
 import com.ou_solutions.employeeapi.entity.EmployeeDO;
+import com.ou_solutions.employeeapi.entity.UserDO;
 import com.ou_solutions.employeeapi.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,10 @@ public class EmployeeService {
 
     public EmployeeDO mapFromEmployeeRequest(EmployeeRequest request)
     {
-        return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile());
+        UserDO userDO = UserDO.build(0l,request.getEmailId(), request.getPassword(), request.getMobile(), null);
+
+
+        return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile(),userDO);
     }
 
 }

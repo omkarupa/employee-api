@@ -35,7 +35,7 @@ public class UserService {
         String password = request.getPassword();
         String mobile = request.getMobile();
 
-        return UserDO.build(0L,username,password,mobile);
+        return UserDO.build(0L,username,password,mobile,null);
     }
 
 
