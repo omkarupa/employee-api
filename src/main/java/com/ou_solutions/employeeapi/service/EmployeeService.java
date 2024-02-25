@@ -32,7 +32,7 @@ public class EmployeeService {
 
     public EmployeeDO mapFromEmployeeRequest(EmployeeRequest request)
     {
-        UserDO userDO = UserDO.build(0l,request.getEmailId(), request.getPassword(), request.getMobile(), null);
+        UserDO userDO = UserDO.build(0L,request.getEmailId(), request.getPassword(), request.getMobile(), null);
 
 
         return EmployeeDO.build(0L,request.getName(), request.getEmailId(), request.getSalary(), request.getMobile(),userDO);
